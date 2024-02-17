@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
-import jwt from "jwt";
+import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-import ENV from "../env";
+import ENV from "../env/index.js";
 
 const userSchema = new Schema(
   {

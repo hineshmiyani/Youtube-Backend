@@ -1,6 +1,6 @@
 import { v2 as cloudinary } from "cloudinary";
 import fs from "fs";
-import ENV from "../env";
+import ENV from "../env/index.js";
 
 cloudinary.config({
   cloud_name: ENV.CLOUDINARY_CLOUD_NAME,
@@ -17,6 +17,10 @@ export const uploadOnCloudinary = async (localFilePath) => {
     });
 
     console.log("File is uploaded on cloudinary!", response.url);
+
+    setTimeout(() => {
+      fs.unlinkSync(localFilePath);
+    }, 10000);
 
     return response;
   } catch (error) {
