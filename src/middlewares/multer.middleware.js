@@ -1,3 +1,4 @@
+// This script configures Multer to handle file uploads by specifying the destination folder and the filename for the uploaded files.
 import multer from "multer";
 
 const storage = multer.diskStorage({
