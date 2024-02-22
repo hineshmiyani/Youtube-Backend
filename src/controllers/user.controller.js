@@ -353,7 +353,7 @@ const updateUserCoverImage = asyncHandler(async (req, res) => {
   }
 
   const userId = req.user._id;
-  await User.findByIdAndUpdate(
+  const updatedUser = await User.findByIdAndUpdate(
     userId,
     {
       $set: {
