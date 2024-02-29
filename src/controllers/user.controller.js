@@ -8,6 +8,7 @@ import { ApiResponse } from "../utils/ApiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
 import { userSchema } from "../utils/validations/index.js";
+import ENV from "../env/index.js";
 
 /* Steps for register user */
 // get user details from frontend
@@ -293,7 +294,7 @@ const updateAccountDetails = asyncHandler(async (req, res) => {
     }
   ).select("-password -refreshToken");
 
-  return res.stauts(200).json(
+  return res.status(200).json(
     new ApiResponse(
       200,
       {
@@ -425,7 +426,7 @@ const getUserChannelProfile = asyncHandler(async (req, res) => {
       $project: {
         fullName: 1,
         username: 1,
-        subscriversCount: 1,
+        subscribersCount: 1,
         channelsSubscribedToCount: 1,
         isSubscribed: 1,
         avatar: 1,
@@ -440,7 +441,7 @@ const getUserChannelProfile = asyncHandler(async (req, res) => {
   }
 
   return res
-    .stauts(200)
+    .status(200)
     .json(
       new ApiResponse(
         200,
