@@ -6,11 +6,16 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon -r dotenv/config --experimental-json-modules src/index.js",
-    "prettify-code": "prettier --write \"src/**/*.js\""
+    "format:check": "prettier --check \"src/**/*.js\"",
+    "format:write": "prettier --write \"src/**/*.js\"",
+    "lint:check": "eslint .",
+    "lint:fix": "eslint --fix ."
   },
   "author": "Hinesh Miyani",
   "license": "ISC",
   "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
     "nodemon": "^3.0.3",
     "prettier": "^3.2.5"
   },
