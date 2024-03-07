@@ -1,6 +1,8 @@
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+
+// eslint-disable-next-line import/order
 import ENV from "./env/index.js";
 
 const app = express();

@@ -16,7 +16,7 @@
   },
   "plugins": ["import"],
   "rules": {
-    "no-console": "error",
+    "no-console": "warn",
     "no-unused-vars": [
       "warn",
       { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }

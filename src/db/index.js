@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+
 import { DB_NAME } from "../constants/index.js";
 import ENV from "../env/index.js";
 
