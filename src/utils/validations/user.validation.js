@@ -9,4 +9,9 @@ const userSchema = z.object({
   password: z.string({ message: "Password is required!" }),
 });
 
-export { userSchema };
+const userIdSchema = z.string({
+  required_error: "UserId is required",
+  invalid_type_error: "UserId is required and must be a string.",
+});
+
+export { userSchema, userIdSchema };

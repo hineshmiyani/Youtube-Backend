@@ -160,7 +160,9 @@ const loginUser = asyncHandler(async (req, res) => {
   );
 
   const {
+    // eslint-disable-next-line no-unused-vars
     password: tempA,
+    // eslint-disable-next-line no-unused-vars
     refreshToken: tempB,
     ...loggedInUser
   } = user?._doc || {};
