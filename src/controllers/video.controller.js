@@ -85,6 +85,10 @@ const updateVideo = asyncHandler(async (req, res) => {
     { new: true }
   );
 
+  if (!updatedVideo) {
+    return res.status(404).json(new ApiError(404, "Video not found!"));
+  }
+
   res
     .status(200)
     .json(new ApiResponse(200, updatedVideo, "Video updated successfully!"));
@@ -94,7 +98,11 @@ const deleteVideo = asyncHandler(async (req, res) => {
   //✅ TODO: delete video
   const { videoId } = req.params;
 
-  await Video.findByIdAndDelete(videoId);
+  const deletedVideo = await Video.findByIdAndDelete(videoId);
+
+  if (!deletedVideo) {
+    return res.status(404).json(new ApiError(404, "Video not found!"));
+  }
 
   res.status(200).json(new ApiResponse(200, {}, "Video deleted successfully!"));
 });
