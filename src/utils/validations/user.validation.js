@@ -1,3 +1,4 @@
+import { isValidObjectId } from "mongoose";
 import { z } from "zod";
 
 const userSchema = z.object({
@@ -9,9 +10,8 @@ const userSchema = z.object({
   password: z.string({ message: "Password is required!" }),
 });
 
-const userIdSchema = z.string({
-  required_error: "UserId is required",
-  invalid_type_error: "UserId is required and must be a string.",
+const userIdSchema = z.string().refine((val) => isValidObjectId(val), {
+  message: "UserId is required and must be a valid MongoDB ObjectId.",
 });
 
 export { userSchema, userIdSchema };

@@ -1,6 +1,7 @@
+import { isValidObjectId } from "mongoose";
 import { z } from "zod";
 
-// import { objectIdSchema } from "./common.validation.js";
+import { userIdSchema } from "./user.validation.js";
 
 const allVideoQueryParamsSchema = z.object({
   page: z.coerce.number().default(1),
@@ -8,7 +9,7 @@ const allVideoQueryParamsSchema = z.object({
   query: z.string(),
   sortBy: z.string().default("createdAt"),
   sortType: z.coerce.number().default(1),
-  userId: z.string(),
+  userId: userIdSchema,
 });
 
 const publishVideoSchema = z.object({
@@ -23,12 +24,11 @@ const publishVideoSchema = z.object({
   duration: z.number().positive(),
   views: z.number().nonnegative().default(0),
   isPublished: z.boolean().default(true),
-  owner: z.string().trim(),
+  owner: userIdSchema,
 });
 
-const videoIdSchema = z.string({
-  required_error: "VideoId is required",
-  invalid_type_error: "VideoId is required and must be a string.",
+const videoIdSchema = z.string().refine((val) => isValidObjectId(val), {
+  message: "VideoId is required and must be a valid MongoDB ObjectId.",
 });
 
 const updateVideoSchema = publishVideoSchema.pick({
